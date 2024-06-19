@@ -71,13 +71,7 @@
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
-			<dependency>
-				<groupId>io.awspring.cloud</groupId>
-				<artifactId>spring-cloud-aws-dependencies</artifactId>
-				<version>${spring.cloud-aws}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
+
 
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>

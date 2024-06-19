@@ -1,23 +1,24 @@
 package com.example.testesqs.sqs.controller;
 
-import com.example.testesqs.sqs.service.SqsMessageService;
+import com.example.testesqs.sqs.core.MessageSender;
+import com.example.testesqs.sqs.model.Mensagem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/v1/producer")
 public class SqsMessageController {
 
     @Autowired
-    private SqsMessageService sqsMessageService;
+    private MessageSender messageSender;
 
-    @GetMapping("/sendMessage")
-    public ResponseEntity<?> sendMessage(@RequestParam("message")String message){
-        sqsMessageService.sendMessage(message);
+    @PostMapping
+    public ResponseEntity<?> sendMessage(@RequestBody Mensagem message){
+        messageSender.send(message.toString());
         return ResponseEntity.ok().build();
     }
 }
